@@ -7,7 +7,11 @@ function App() {
   const [password, setPassword] = useState('');
 
   function handleLogin() {
-    api.get('/list-all')
+    const body = {
+      email,
+      password
+    }
+    api.post('/login', body)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }
