@@ -6,7 +6,7 @@ function App() {
   const { loggedIn } = useAuth();
 
   return (
-    <div>
+    <div className=''>
       {
         !loggedIn ? <AuthRoutes /> : <AppRoutes />
       }

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import api from "../service/api";
 import { useAuth } from "../context/Auth.context";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { setLoggedIn, setUser } = useAuth();
+
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +35,7 @@ export default function Login() {
   }
 
   return (
-    <div className='bg-[#b625b6] rounded-[30px] w-[500px] h-[400px]'>
+    <div className='flex  flex-col items-center bg-[#b625b6] rounded-[30px] w-[500px] h-[400px]'>
       <p className='text-[30px] text-white font-bold pt-[30px]'>Login</p>
 
       <div className='flex flex-col items-center mt-[30px]'>
@@ -63,6 +66,7 @@ export default function Login() {
         </button>
         <button
           type='button'
+          onClick={() => {navigate('/register')}}
           className='border-[1px] bg-[white] border-[green] text-[green] w-[350px] mb-[20px] p-[10px] rounded-[10px] cursor-pointer focus:outline-none focus:border-[#51cf51] hover:border-[green]'
         >
           Cadastrar
