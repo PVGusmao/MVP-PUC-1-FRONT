@@ -5,7 +5,6 @@ import { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
 import { schema } from "../utils/registerYupSchema";
 
 export default function Register() {
@@ -44,7 +43,9 @@ export default function Register() {
           value={newUser?.first_name}
         />
         
-        <p className="text-[red] mb-[10px] w-[350px] text-[12px]">{errors.first_name?.message}</p>
+        <div className="h-[15px] mb-[10px]">
+          <p className="text-[red] w-[350px] text-[12px]">{errors.first_name?.message}</p>
+        </div>
 
         <input
           {...register("last_name")}
@@ -55,7 +56,9 @@ export default function Register() {
           value={newUser?.last_name}
         />
 
-        <p className="text-[red] mb-[10px] w-[350px] text-[12px]">{errors.last_name?.message}</p>
+        <div className="h-[15px] mb-[10px]">
+          <p className="text-[red] w-[350px] text-[12px]">{errors.last_name?.message}</p>
+        </div>
 
         <div className="flex justify-between w-full">
           <div className="flex flex-col w-full">
@@ -68,7 +71,9 @@ export default function Register() {
               value={newUser?.cpf}
             />
 
-            <p className="text-[red] mb-[10px] w-[170px] text-[12px]">{errors.cpf?.message}</p>
+            <div className="h-[30px] mb-[10px]">
+              <p className="text-[red] w-[170px] text-[12px]">{errors.cpf?.message}</p>
+            </div>
           </div>
           
           <div>
@@ -81,7 +86,9 @@ export default function Register() {
               value={newUser?.birth_date}
             />
 
-            <p className="text-[red] mb-[10px] w-[170px] text-[12px]">{errors.birth_date?.message}</p>
+            <div className="h-[30px] mb-[10px]">
+              <p className="text-[red] w-[170px] text-[12px]">{errors.birth_date?.message}</p>
+            </div>
           </div>
         </div>
         
@@ -94,7 +101,9 @@ export default function Register() {
           value={newUser?.email}
         />
           
-        <p className="text-[red] mb-[10px] w-[350px] text-[12px]">{errors.email?.message}</p>
+        <div className="h-[15px] mb-[10px]">
+          <p className="text-[red] w-[350px] text-[12px]">{errors.email?.message}</p>
+        </div>
         
         <input
           {...register("password")}
@@ -105,7 +114,9 @@ export default function Register() {
           value={newUser?.password}
         />
 
-        <p className="text-[red] mb-[10px] w-[350px] text-[12px]">{errors.password?.message}</p>
+        <div className="h-[15px] mb-[10px]">
+          <p className="text-[red] w-[350px] text-[12px]">{errors.password?.message}</p>
+        </div>
       </div>
 
       <div className='flex flex-col items-center'>
