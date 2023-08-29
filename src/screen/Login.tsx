@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../service/api";
 import { useAuth } from "../context/Auth.context";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from "../utils/registerYupSchema";
+import { setToken } from "../service/auth";
 
 export default function Login() {
   const { setLoggedIn, setUser } = useAuth();
@@ -23,11 +24,21 @@ export default function Login() {
     api.post('/login', data)
     .then((res) => {
       setLoggedIn(true)
+      setToken(res?.data?.token)
       setUser(res?.data?.user)
     })
     .catch((err) => console.log(err))
     console.log(data)
   };
+
+  useEffect(() => {
+    api.get('/exercise/list')
+      .then((res) => {
+        console.log(res)
+        setLoggedIn(true)
+      })
+      .catch((error) => console.log(error))
+  }, [])
 
   return (
     <div className='flex  flex-col items-center bg-[#f1cbf1] rounded-[30px] w-[500px] h-[400px]'>
