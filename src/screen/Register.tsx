@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import api from "../service/api";
 import { useState } from "react";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+import { schema } from "../utils/registerYupSchema";
+
 export default function Register() {
   const navigate = useNavigate();
 
@@ -15,79 +20,98 @@ export default function Register() {
     password: '',
   });
 
-  function signUp() {
-    api.post('/register-user', newUser)
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error.response.data))
-      .finally(() => {
-        setNewUser({
-          first_name: '',
-          last_name: '',
-          cpf: '',
-          birth_date: '',
-          email: '',
-          password: '',
-        })
-      })
-  }
+  const { register, handleSubmit, formState:{ errors } } = useForm({
+    resolver: yupResolver(schema)
+  });
+  const onSubmit = data => {
+    console.log(data)
+    api.post('/register-user', data)
+    .then((response) => console.log(response.data))
+    .catch((error) => console.log(error.response.data))
+  };
   
   return (
-    <div className='flex  flex-col items-center bg-[#b625b6] rounded-[30px] w-[500px]'>
+    <div className='flex  flex-col items-center bg-[#f1cbf1] rounded-[30px] w-[500px]'>
       <p className='text-[30px] text-white font-bold pt-[30px]'>Cadastrar Usuário</p>
 
       <div className='flex flex-col items-center mt-[30px]'>
         <input
-          className='w-[350px] mb-[20px] p-[10px] rounded-[10px] focus:outline-none'
+          {...register("first_name")}
+          className='w-[350px] p-[10px] rounded-[10px] focus:outline-none'
           placeholder='Nome'
           name='first_name'
           onChange={(e) => setNewUser({...newUser, first_name: e.target.value})}
           value={newUser?.first_name}
         />
+        
+        <p className="text-[red] mb-[10px] w-[350px] text-[12px]">{errors.first_name?.message}</p>
+
         <input
-          className='w-[350px] mb-[30px] p-[10px] rounded-[10px] focus:outline-none'
+          {...register("last_name")}
+          className='w-[350px] p-[10px] rounded-[10px] focus:outline-none'
           placeholder='Sobrenome'
           name='last_name'
           onChange={(e) => setNewUser({...newUser, last_name: e.target.value})}
           value={newUser?.last_name}
         />
 
+        <p className="text-[red] mb-[10px] w-[350px] text-[12px]">{errors.last_name?.message}</p>
+
         <div className="flex justify-between w-full">
-          <input
-            className='w-[170px] mb-[30px] p-[10px] rounded-[10px] focus:outline-none'
-            placeholder='CPF'
-            name='cpf'
-            onChange={(e) => setNewUser({...newUser, cpf: e.target.value})}
-            value={newUser?.cpf}
-          />
-          <input
-            className='w-[170px] mb-[30px] p-[10px] rounded-[10px] focus:outline-none'
-            placeholder='Data de aniversário'
-            name='birth_date'
-            onChange={(e) => setNewUser({...newUser, birth_date: e.target.value})}
-            value={newUser?.birth_date}
-          />
+          <div className="flex flex-col w-full">
+            <input
+              {...register("cpf")}
+              className='w-[170px] p-[10px] rounded-[10px] focus:outline-none'
+              placeholder='CPF'
+              name='cpf'
+              onChange={(e) => setNewUser({...newUser, cpf: e.target.value})}
+              value={newUser?.cpf}
+            />
+
+            <p className="text-[red] mb-[10px] w-[170px] text-[12px]">{errors.cpf?.message}</p>
+          </div>
+          
+          <div>
+            <input
+              {...register("birth_date")}
+              className='w-[170px] p-[10px] rounded-[10px] focus:outline-none'
+              placeholder='Data de aniversário'
+              name='birth_date'
+              onChange={(e) => setNewUser({...newUser, birth_date: e.target.value})}
+              value={newUser?.birth_date}
+            />
+
+            <p className="text-[red] mb-[10px] w-[170px] text-[12px]">{errors.birth_date?.message}</p>
+          </div>
         </div>
         
         <input
-          className='w-[350px] mb-[30px] p-[10px] rounded-[10px] focus:outline-none'
+          {...register("email")}
+          className='w-[350px] p-[10px] rounded-[10px] focus:outline-none'
           placeholder='E-mail'
           name='email'
           onChange={(e) => setNewUser({...newUser, email: e.target.value})}
           value={newUser?.email}
         />
+          
+        <p className="text-[red] mb-[10px] w-[350px] text-[12px]">{errors.email?.message}</p>
+        
         <input
-          className='w-[350px] mb-[30px] p-[10px] rounded-[10px] focus:outline-none'
+          {...register("password")}
+          className='w-[350px] p-[10px] rounded-[10px] focus:outline-none'
           placeholder='Senha'
           name='password'
           onChange={(e) => setNewUser({...newUser, password: e.target.value})}
           value={newUser?.password}
         />
+
+        <p className="text-[red] mb-[10px] w-[350px] text-[12px]">{errors.password?.message}</p>
       </div>
 
       <div className='flex flex-col items-center'>
         <button
           type='button'
-          onClick={signUp}
+          onClick={handleSubmit(onSubmit)}
           className='text-[white] bg-[green] w-[350px] mb-[20px] p-[10px] rounded-[10px] cursor-pointer focus:outline-none focus:bg-[#2e8d2e] hover:border-[green]'
         >
           Cadastrar
