@@ -7,15 +7,11 @@ import RegisteredSeries from "../../components/RegisteredSeries";
 export default function Home() {
   return (
     <div className="">
-      <Header />
-
       <Welcome />
 
       <RegisteredSeries />
 
       <GenerateSerie />
-
-      <Footer />
     </div>
   )
 }
