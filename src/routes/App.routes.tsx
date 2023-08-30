@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import Home from "../screen/Home";
+import Home from "../screen/Home/Home";
 
 export default function AppRoutes() {
   return (
