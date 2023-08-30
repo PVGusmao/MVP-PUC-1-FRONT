@@ -1,6 +1,10 @@
+import { useNavigate } from 'react-router-dom';
+
 import welcome_img from '../../assets/image_home.webp';
 
 export default function Welcome() {
+  const navigate = useNavigate();
+
   return (
     <div className='flex items-center justify-center my-[120px]'>
       <div className='flex flex-col items-end mr-[30px]'>
@@ -12,7 +16,7 @@ export default function Welcome() {
         </div>
         <button
           className='flex items-center justify-center bg-[#e23232] mt-[40px] w-[300px] h-[30px] p-[20px] rounded-xl text-white font-bold'
-          onClick={() => console.log('clicked')}
+          onClick={() => navigate('/list-series')}
         >
           Clique aqui e resitre sua série!
         </button>

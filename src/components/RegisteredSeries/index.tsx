@@ -1,8 +1,12 @@
+import { useNavigate } from 'react-router-dom';
+
 import registered_series_image from '../../assets/registered-series.webp';
 
 export default function RegisteredSeries() {
+  const navigate = useNavigate();
+
   return (
-    <button className='flex w-full items-center justify-center py-[60px] mb-[60px] bg-[#141414]'>
+    <button onClick={() => navigate("/register-exercises")} className='flex w-full items-center justify-center py-[60px] mb-[60px] bg-[#141414]'>
       <img
         className='w-[400px] rounded-xl'
         src={registered_series_image}

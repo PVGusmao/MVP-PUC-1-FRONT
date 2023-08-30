@@ -1,6 +1,10 @@
+import { useNavigate } from 'react-router-dom';
+
 import generate_serie from '../../assets/gym_generate.webp';
 
 export default function GenerateSerie() {
+  const navigate = useNavigate();
+
   return (
     <div className='flex flex-col items-center mb-[60px] mt-[120px]'>
       <div className='flex items-center justify-center'>
@@ -22,7 +26,7 @@ export default function GenerateSerie() {
 
       <button
         className='flex items-center justify-center bg-[darkgreen] mt-[40px] w-[600px] h-[80px] p-[20px] rounded-xl text-[32px] text-white font-bold'
-        onClick={() => console.log('clicked')}
+        onClick={() => navigate('/generate-series')}
       >
         Crie sua série e treine agora!
       </button>

@@ -5,9 +5,11 @@ import { BiLogOut } from "react-icons/bi";
 import { logout } from "../../service/auth";
 
 import logo_icon from '../../assets/icon_header_navigator.webp';
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const {setLoggedIn} = useAuth();
+  const navigate = useNavigate();
   
   function logoutUser() {
     logout();
@@ -19,9 +21,9 @@ export default function Header() {
       <img className='w-[60px]' src={logo_icon} alt="logo da aplicação" />
 
       <div className='flex w-[500px] justify-around items-center'>
-        <button className='text-white'>Registrar</button>
-        <button className='text-white'>Séries</button>
-        <button className='text-white'>Gerador</button>
+        <button onClick={() => navigate('/generate-series')} className='text-white'>Registrar</button>
+        <button onClick={() => navigate('/list-series')} className='text-white'>Séries</button>
+        <button onClick={() => navigate('/register-exercises')} className='text-white'>Gerador</button>
       </div>
 
       <button onClick={logoutUser} className="flex">
