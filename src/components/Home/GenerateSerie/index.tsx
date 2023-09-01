@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import generate_serie from '../../assets/gym_generate.webp';
+import generate_serie from '../../../assets/gym_generate.webp';
 
 export default function GenerateSerie() {
   const navigate = useNavigate();

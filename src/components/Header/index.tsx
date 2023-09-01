@@ -21,9 +21,9 @@ export default function Header() {
       <img className='w-[60px]' src={logo_icon} alt="logo da aplicação" />
 
       <div className='flex w-[500px] justify-around items-center'>
-        <button onClick={() => navigate('/generate-series')} className='text-white'>Registrar</button>
+        <button onClick={() => navigate('/register-exercises')} className='text-white'>Registrar</button>
         <button onClick={() => navigate('/list-series')} className='text-white'>Séries</button>
-        <button onClick={() => navigate('/register-exercises')} className='text-white'>Gerador</button>
+        <button onClick={() => navigate('/generate-series')} className='text-white'>Gerador</button>
       </div>
 
       <button onClick={logoutUser} className="flex">

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import welcome_img from '../../assets/image_home.webp';
+import welcome_img from '../../../assets/image_home.webp';
 
 export default function Welcome() {
   const navigate = useNavigate();

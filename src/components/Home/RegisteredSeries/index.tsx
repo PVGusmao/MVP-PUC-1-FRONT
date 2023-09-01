@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import registered_series_image from '../../assets/registered-series.webp';
+import registered_series_image from '../../../assets/registered-series.webp';
 
 export default function RegisteredSeries() {
   const navigate = useNavigate();

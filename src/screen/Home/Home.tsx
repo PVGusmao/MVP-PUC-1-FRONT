@@ -1,8 +1,6 @@
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
-import Welcome from "../../components/Welcome";
-import GenerateSerie from "../../components/GenerateSerie";
-import RegisteredSeries from "../../components/RegisteredSeries";
+import Welcome from "../../components/Home/Welcome";
+import GenerateSerie from "../../components/Home/GenerateSerie";
+import RegisteredSeries from "../../components/Home/RegisteredSeries";
 
 export default function Home() {
   return (
