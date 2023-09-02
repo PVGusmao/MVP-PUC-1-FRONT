@@ -12,7 +12,6 @@ function App() {
   useEffect(() => {
     api.get('/exercise/list')
       .then((res) => {
-        console.log(res)
         setLoggedIn(true)
       })
       .catch((error) => console.log(error))
