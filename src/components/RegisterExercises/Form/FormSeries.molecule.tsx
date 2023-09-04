@@ -156,11 +156,22 @@ export default function FormSeries() {
         />
       }
 
+      {
+        !showNextStep.firstStep && 
+        <p className="w-[500px] text-center text-white text-[20px]">Lembre-se de adicionar sempre exercicios referentes as mesmas series(A,B,C, D ou E), para melhor identificacao e visualizacao na aplicacao. Caso queira adicionar um grupo de series novo, clique no botao vermelho abaixo.</p>
+      }
+
       <button
-        className=" w-[400px] h-[60px] bg-[green] rounded-xl my-[50px] text-white text-[20px] font-bold"
+        className=" w-[400px] h-[60px] bg-[green] rounded-xl mt-[50px] mb-[25px] text-white text-[20px] font-bold"
         onClick={manageAddSerie}
       >
-        Adicionar Nova Série
+        Adicionar exercicios a série
+      </button>
+
+      <button
+        className=" w-[400px] h-[60px] bg-[red] rounded-xl text-white text-[20px] font-bold"
+      >
+        Adicionar nova Série
       </button>
     </div>
   )
