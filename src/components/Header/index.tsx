@@ -13,7 +13,8 @@ export default function Header() {
   
   function logoutUser() {
     logout();
-    setLoggedIn(false)
+    setLoggedIn(false);
+    navigate('/')
   }
 
   return (

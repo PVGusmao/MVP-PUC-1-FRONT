@@ -33,3 +33,14 @@ const loginSchema = yup.object({
 type LoginFormData = yup.InferType<typeof loginSchema>;
 
 export {loginSchema, LoginFormData};
+
+const serieRegisterSchema = yup.object({
+  name: yup.string().required('Qual o nome do exercicio?.'),
+  muscle_group: yup.string().required("Qual o grupo muscular?"),
+  series: yup.string().required("Quantas series serao feitas?"),
+  series_repeats: yup.string().required('Quantas repeticoes por serie?'),
+})
+
+type SerieRegisterFormData = yup.InferType<typeof serieRegisterSchema>;
+
+export {serieRegisterSchema, SerieRegisterFormData};

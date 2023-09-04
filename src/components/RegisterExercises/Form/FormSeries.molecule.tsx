@@ -25,36 +25,56 @@ export default function FormSeries() {
   function manageAddSerie() {
     if (!showNextStep.firstStep) {
       api.get('/exercise/lastserie')
-        .then((res) => setSerie({...serie, identify: res?.data?.data}))
+        .then((res) => serie.identify === 0 && setSerie({...serie, identify: res?.data?.data}))
         .catch((error) => console.log(error))
         .finally(() => setShowNextStep({...showNextStep, firstStep: true}))
-    };
+    }
 
     if (serie?.day_serie?.length === 1) {
       setShowNextStep({...showNextStep, secondStep: true})
-    };
+    }
 
     if (serie?.num_of_exercises !== 0) {
       setShowNextStep({...showNextStep, thirdStep: true})
-    };
-
-    const body = {
-      identify: serie?.identify,
-      day_serie: serie?.day_serie?.toUpperCase(),
-      exercises: {
-        ...exercises
-      }
     }
 
-    api.post('/exercise/add', body)
-      .then((res) => console.log(res.data))
-      .catch((error) => console.log(error.response))
+    const existingExercises = Object.keys(exercises)
+
+    if (existingExercises.length > 0) {
+      const body = {
+        identify: serie?.identify,
+        day_serie: serie?.day_serie?.toUpperCase(),
+        exercises: Object.values(exercises),
+      }
+
+      console.log(body)
+
+      api.post('/exercise/add', body)
+        .then((res) => console.log(res.data))
+        .catch((error) => console.log(error.response))
+        .finally(() => {
+          setShowNextStep({
+            firstStep: false,
+            secondStep: false,
+            thirdStep: false,
+          })
+
+          setSerie({...serie,
+            day_serie: '',
+            num_of_exercises: 0
+          })
+
+          setExercises({})
+          
+          window.location.reload();
+        })
+      }
   }
 
   function exercisesInputs() {
     const inputElements = []
 
-    for (let i = 0; i < serie.num_of_exercises; i++) {
+    for (let i = 0; i < serie.num_of_exercises; i += 1) {
       inputElements
         .push(
           <div className="" key={i}>
@@ -62,7 +82,7 @@ export default function FormSeries() {
               className="w-[300px] p-[5px] m-[5px] rounded-lg"
               placeholder={`Nome do ${i + 1}° exercício da série ${serie?.day_serie.toUpperCase()}`}
               type="text"
-              name={`exercício ${i + 1}`}
+              name="name"
               onChange={(e) => setExercises({...exercises, [`exercicio${i + 1}`]: {...exercises[`exercicio${i + 1}`], name: e?.target?.value}})}
             />
 
@@ -70,6 +90,7 @@ export default function FormSeries() {
               className="w-[150px] p-[5px] m-[5px] rounded-lg"
               placeholder={`Grupo muscular`}
               type="text"
+              name="muscle_group"
               onChange={(e) => setExercises({...exercises, [`exercicio${i + 1}`]: {...exercises[`exercicio${i + 1}`], muscle_group: e?.target?.value}})}
             />
 
@@ -77,13 +98,15 @@ export default function FormSeries() {
               className="w-[300px] p-[5px] m-[5px] rounded-lg"
               placeholder={`Número de séries do ${i + 1}° exercício`}
               type="text"
-              onChange={(e) => setExercises({...exercises, [`exercicio${i + 1}`]: {...exercises[`exercicio${i + 1}`], num_series: e?.target?.value}})}
+              name="series"
+              onChange={(e) => setExercises({...exercises, [`exercicio${i + 1}`]: {...exercises[`exercicio${i + 1}`], series: e?.target?.value}})}
             />
 
             <input
               className="w-[400px] p-[5px] m-[5px] rounded-lg"
               placeholder={`Número de repetições da série do ${i + 1}° exercício`}
               type="text"
+              name="series_repeats"
               onChange={(e) => setExercises({...exercises, [`exercicio${i + 1}`]: {...exercises[`exercicio${i + 1}`], series_repeats: e?.target?.value}})}
             />
           </div>
@@ -98,15 +121,15 @@ export default function FormSeries() {
   }
 
   return (
-    <div className="bg-black flex flex-col items-center h-[100vh]">
+    <div className="bg-black flex flex-col items-center h-[100vh]">      
       <div className="mt-[50px]">
         {
-        showNextStep?.thirdStep &&
-          exercisesInputs()
+          showNextStep?.thirdStep &&
+            exercisesInputs()
         }
       </div>
-       
-       {
+
+      {
         showNextStep?.secondStep && !showNextStep?.thirdStep &&
         <input
           maxLength={1}
