@@ -20,12 +20,17 @@ export default function FormSeries() {
     num_of_exercises: 0
   });
 
+  console.log(serie)
+
   const [exercises, setExercises] = useState({})
 
   function manageAddSerie() {
     if (!showNextStep.firstStep) {
       api.get('/exercise/lastserie')
-        .then((res) => serie.identify === 0 && setSerie({...serie, identify: res?.data?.data}))
+        .then((res) => {
+          console.log(res.data.data + 1)
+          serie.identify === 0 && setSerie({...serie, identify: res?.data?.data + 1})
+        })
         .catch((error) => console.log(error))
         .finally(() => setShowNextStep({...showNextStep, firstStep: true}))
     }
@@ -64,9 +69,7 @@ export default function FormSeries() {
             num_of_exercises: 0
           })
 
-          setExercises({})
-          
-          window.location.reload();
+          setExercises({})          
         })
       }
   }
@@ -158,7 +161,7 @@ export default function FormSeries() {
 
       {
         !showNextStep.firstStep && 
-        <p className="w-[500px] text-center text-white text-[20px]">Lembre-se de adicionar sempre exercicios referentes as mesmas series(A,B,C, D ou E), para melhor identificacao e visualizacao na aplicacao. Caso queira adicionar um grupo de series novo, clique no botao vermelho abaixo.</p>
+        <p className="w-[700px] text-center text-white text-[20px]">Lembre-se de adicionar sempre exercicios referentes as mesmas series(A,B,C, D ou E), para melhor identificacao e visualizacao na aplicacao. Caso queira adicionar um grupo de series novo, clique no botao vermelho abaixo. Caso já tenha adicionado parte da sua série e <b>tem interesse em editar ou adicionar mais exercícios</b>, vá até Séries no cabeçalho e la voce poderá editar suas séries já existentes.</p>
       }
 
       <button
@@ -168,11 +171,22 @@ export default function FormSeries() {
         Adicionar exercicios a série
       </button>
 
-      <button
-        className=" w-[400px] h-[60px] bg-[red] rounded-xl text-white text-[20px] font-bold"
-      >
-        Adicionar nova Série
-      </button>
+      {
+        !showNextStep.firstStep && 
+          <button
+            onClick={() => {
+              setSerie({...serie,
+                day_serie: '',
+                num_of_exercises: 0
+              })
+              
+              manageAddSerie()
+            }}
+            className=" w-[400px] h-[60px] bg-[red] rounded-xl text-white text-[20px] font-bold"
+          >
+            Adicionar nova Série
+          </button>
+      }
     </div>
   )
 }
