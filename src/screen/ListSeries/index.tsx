@@ -50,21 +50,23 @@ export default function ListSeries() {
   }, [])
 
   return (
-    <div className="flex flex-col h-[90vh]">
+    <div className="flex flex-col h-full min-h-[90vh] items-center">
       <div className="flex flex-col items-center mt-[50px]">
         <p className="w-[500px] text-center text-[20px]">Aqui você pode ver as suas séries, navegar por elas e caso queira, baixar em pdf para uma visualização enquanto treina.</p>
       </div>
 
-      {
-        arrayIdentify?.map((element, index) => (
-          <CardSeries
-            key={index}
-            serie={serie}
-            element={element}
-            user={user}
-          />
-        ))
-      }
+      <div className="flex-col ">
+        {
+          arrayIdentify?.map((element, index) => (
+            <CardSeries
+              key={index}
+              serie={serie}
+              element={element}
+              user={user}
+            />
+          ))
+        }
+      </div>
 
     </div>
   )
