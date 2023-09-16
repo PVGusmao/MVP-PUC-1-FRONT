@@ -21,7 +21,7 @@ export default function ListSeries() {
   const [arrayIdentify, setArrayIdentify] = useState([] as number[]);
 
   function getAllSeries() {
-    api.get("/exercise/list")
+    api.get("/exercise")
       .then((response) => {
         setSerie(response?.data?.data)
         howMutchSeries(response?.data?.data)

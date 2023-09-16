@@ -10,7 +10,7 @@ function App() {
   const { loggedIn, setLoggedIn } = useAuth();
 
   useEffect(() => {
-    api.get('/exercise/list')
+    api.get('/exercise')
       .then((res) => {
         setLoggedIn(true)
       })

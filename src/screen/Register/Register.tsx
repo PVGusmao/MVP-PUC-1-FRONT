@@ -24,7 +24,7 @@ export default function Register() {
   });
   const onSubmit = data => {
     console.log(data)
-    api.post('/register-user', data)
+    api.post('/register', data)
     .then((response) => console.log(response.data))
     .catch((error) => console.log(error.response.data))
   };

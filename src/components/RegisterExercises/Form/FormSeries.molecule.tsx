@@ -54,7 +54,7 @@ export default function FormSeries() {
 
       console.log(body)
 
-      api.post('/exercise/add', body)
+      api.post('/exercise', body)
         .then((res) => console.log(res.data))
         .catch((error) => console.log(error.response))
         .finally(() => {
