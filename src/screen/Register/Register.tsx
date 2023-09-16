@@ -7,9 +7,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from "../../utils/registerYupSchema";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Register() {
   const navigate = useNavigate();
 
+  const notify = (message: string) => toast(message);
+  
   const [newUser, setNewUser] = useState({
     first_name: '',
     last_name: '',
@@ -25,15 +30,22 @@ export default function Register() {
   const onSubmit = data => {
     console.log(data)
     api.post('/register', data)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error.response.data))
+    .then((response) => {
+      notify(response.data.message);
+      console.log(response.data)
+    })
+    .catch((error) => {
+      notify(error.response.data.message);
+      console.log(error.response.data.message)
+    })
   };
   
   return (
     <div className="flex h-[100vh] items-center justify-center">
-      <div className='flex  flex-col items-center bg-[#f1cbf1] rounded-[30px] w-[500px]'>
-        <p className='text-[30px] text-white font-bold pt-[30px]'>Cadastrar Usuário</p>
+      <ToastContainer />
 
+      <div className='flex  flex-col items-center bg-[#f1cbf1] rounded-[30px] w-[500px]'>
+        <p className='text-[30px] text-white font-bold pt-[30px]'>Cadastrar Usuário</p>       
         <div className='flex flex-col items-center mt-[30px]'>
           <input
             {...register("first_name")}
