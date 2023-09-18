@@ -25,7 +25,7 @@ export default function ListSeries() {
       .then((response) => {
         setSerie(response?.data?.data)
         howMutchSeries(response?.data?.data)
-        // console.log(response?.data?.data)
+        console.log(response?.data?.data)
       })
       .catch((error) => console.log(error))
   }
@@ -41,9 +41,12 @@ export default function ListSeries() {
       }
     }
 
+    // const newarray = seriesIdentifyList.filter((item, index) => seriesIdentifyList.indexOf(item) === index); 
+
     setArrayIdentify(seriesIdentifyList);
   }
 
+  console.log(arrayIdentify)
 
   useEffect(() => {
     getAllSeries();

@@ -29,7 +29,8 @@ export default function Login() {
     api.post('/login', data)
     .then((res) => {
       setLoggedIn(true)
-      setToken(res?.data?.token)
+      console.log(res?.data)
+      setToken(res?.data?.token?.split(' ')[1])
       setUser(res?.data?.user)
     })
     .catch((err) => console.log(err))

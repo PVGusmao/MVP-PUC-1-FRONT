@@ -82,8 +82,8 @@ export default function CardSeries({element, serie, user}: Props) {
           </div>
 
           {
-            serieByIdentify?.map((element) => (
-              <div className={`flex font-bold items-center ${element.day_serie === "A" ? "bg-red-100" : element.day_serie === "B" ? "bg-green-100" : "bg-yellow-100"} border-l border-r border-t border-black`}>
+            serieByIdentify?.map((element, index) => (
+              <div key={index} className={`flex font-bold items-center ${element.day_serie === "A" ? "bg-red-100" : element.day_serie === "B" ? "bg-green-100" : "bg-yellow-100"} border-l border-r border-t border-black`}>
                 <p className="my-[10px] w-[50px] text-center">{element.day_serie}</p>
                 <p className="my-[10px] w-[320px] ml-[20px]">{element.name}</p>
                 <p className="my-[10px] text-center w-[100px] ml-[20px]">{element.muscle_group}</p>
