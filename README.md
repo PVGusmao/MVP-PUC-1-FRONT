@@ -1,27 +1,24 @@
-# React + TypeScript + Vite
+GYM_BRO_APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bem vindo ao seu app de academia e treino.
 
-Currently, two official plugins are available:
+Para poder fazer uso do mesmo, necessario seguir o seguinte passo a passo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Primeiro clone o repositorio no seu dispositivo e em seguida entre na pasta do mesmo e de o seguinte comando.
 
-## Expanding the ESLint configuration
+- npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Apos concluir a instalacao, rode o comando
 
-- Configure the top-level `parserOptions` property like this:
+- npm start
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+Pronto, voce ja esta pronto para utilizar a plataforma, lembre de ter a api rodando para poder realizar as requisicoes.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+OBSERVACOES
+
+- Voce pode criar uma conta e logar para testar a aplicacao do zero.
+
+Caso voce queira logar com uma conta ja cadastrada de exemplo, loguei utilizando as credenciais abaixo.
+
+- login: pvmg1@hotmail.com
+- password: #Paulo2010.
